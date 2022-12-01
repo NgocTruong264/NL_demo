@@ -1,11 +1,11 @@
 <template>
   <div class="thongtin-page">
     <img src="../../assets/TestImage.svg" alt="">
-    <div class="block-title">
-      <span class="block-name">AKARI CITY</span>
+    <div class="project-title">
+      <span class="project-name">AKARI CITY</span>
       <img src="../../assets/ArrowRight.svg" alt="">
     </div>
-    <div>
+    <div class="project-info">
       <span>Block</span>
       <span>Loại căn hộ</span>
       <span>Tiện ích</span>
@@ -15,13 +15,17 @@
 </template>
 <style lang="scss">
   .thongtin-page {
-    .block-title {
+    .project-title {
       display: flex;
       justify-content: space-between;
       padding: 16px 40px;
-      .block-name {
+      .project-name {
         font-size: 32px;
         font-weight: bold;
+      }
+      .project-info {
+        display: flex;
+        justify-content: space-between;
       }
     }
   }
