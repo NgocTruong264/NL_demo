@@ -1,58 +1,90 @@
 <template>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
-    <p>
-      For a guide and recipes on how to configure / customize this project,<br>
-      check out the
-      <a href="https://cli.vuejs.org" target="_blank" rel="noopener">vue-cli documentation</a>.
-    </p>
-    <h3>Installed CLI Plugins</h3>
-    <ul>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-babel" target="_blank" rel="noopener">babel</a></li>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-eslint" target="_blank" rel="noopener">eslint</a></li>
-    </ul>
-    <h3>Essential Links</h3>
-    <ul>
-      <li><a href="https://vuejs.org" target="_blank" rel="noopener">Core Docs</a></li>
-      <li><a href="https://forum.vuejs.org" target="_blank" rel="noopener">Forum</a></li>
-      <li><a href="https://chat.vuejs.org" target="_blank" rel="noopener">Community Chat</a></li>
-      <li><a href="https://twitter.com/vuejs" target="_blank" rel="noopener">Twitter</a></li>
-      <li><a href="https://news.vuejs.org" target="_blank" rel="noopener">News</a></li>
-    </ul>
-    <h3>Ecosystem</h3>
-    <ul>
-      <li><a href="https://router.vuejs.org" target="_blank" rel="noopener">vue-router</a></li>
-      <li><a href="https://vuex.vuejs.org" target="_blank" rel="noopener">vuex</a></li>
-      <li><a href="https://github.com/vuejs/vue-devtools#vue-devtools" target="_blank" rel="noopener">vue-devtools</a></li>
-      <li><a href="https://vue-loader.vuejs.org" target="_blank" rel="noopener">vue-loader</a></li>
-      <li><a href="https://github.com/vuejs/awesome-vue" target="_blank" rel="noopener">awesome-vue</a></li>
-    </ul>
+  <div style="width: 256px">
+    <a-button type="primary" style="margin-bottom: 16px" @click="toggleCollapsed">
+      <MenuUnfoldOutlined v-if="collapsed" />
+      <MenuFoldOutlined v-else />
+    </a-button>
+    <a-menu
+      v-model:openKeys="openKeys"
+      v-model:selectedKeys="selectedKeys"
+      mode="inline"
+      theme="dark"
+      :inline-collapsed="collapsed"
+    >
+      <a-menu-item key="1">
+        <template #icon>
+          <PieChartOutlined />
+        </template>
+        <span>Option 1</span>
+      </a-menu-item>
+      <a-menu-item key="2">
+        <template #icon>
+          <DesktopOutlined />
+        </template>
+        <span>Option 2</span>
+      </a-menu-item>
+      <a-menu-item key="3">
+        <template #icon>
+          <InboxOutlined />
+        </template>
+        <span>Option 3</span>
+      </a-menu-item>
+      <a-sub-menu key="sub1">
+        <template #icon>
+          <MailOutlined />
+        </template>
+        <template #title>Navigation One</template>
+        <a-menu-item key="5">Option 5</a-menu-item>
+        <a-menu-item key="6">Option 6</a-menu-item>
+        <a-menu-item key="7">Option 7</a-menu-item>
+        <a-menu-item key="8">Option 8</a-menu-item>
+      </a-sub-menu>
+      <a-sub-menu key="sub2">
+        <template #icon>
+          <AppstoreOutlined />
+        </template>
+        <template #title>Navigation Two</template>
+        <a-menu-item key="9">Option 9</a-menu-item>
+        <a-menu-item key="10">Option 10</a-menu-item>
+        <a-sub-menu key="sub3" title="Submenu">
+          <a-menu-item key="11">Option 11</a-menu-item>
+          <a-menu-item key="12">Option 12</a-menu-item>
+        </a-sub-menu>
+      </a-sub-menu>
+    </a-menu>
   </div>
 </template>
-
 <script>
-export default {
-  name: 'HelloWorld',
-  props: {
-    msg: String
-  }
-}
+import { defineComponent, reactive, toRefs, watch } from 'vue';
+import { MenuFoldOutlined, MenuUnfoldOutlined, PieChartOutlined, MailOutlined, DesktopOutlined, InboxOutlined, AppstoreOutlined } from '@ant-design/icons-vue';
+export default defineComponent({
+  components: {
+    MenuFoldOutlined,
+    MenuUnfoldOutlined,
+    PieChartOutlined,
+    MailOutlined,
+    DesktopOutlined,
+    InboxOutlined,
+    AppstoreOutlined,
+  },
+  setup() {
+    const state = reactive({
+      collapsed: false,
+      selectedKeys: ['1'],
+      openKeys: ['sub1'],
+      preOpenKeys: ['sub1'],
+    });
+    watch(() => state.openKeys, (_val, oldVal) => {
+      state.preOpenKeys = oldVal;
+    });
+    const toggleCollapsed = () => {
+      state.collapsed = !state.collapsed;
+      state.openKeys = state.collapsed ? [] : state.preOpenKeys;
+    };
+    return {
+      ...toRefs(state),
+      toggleCollapsed,
+    };
+  },
+});
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-h3 {
-  margin: 40px 0 0;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
-</style>
