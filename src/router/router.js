@@ -1,6 +1,6 @@
 import { createWebHistory, createRouter } from "vue-router";
-import ThongTinPage from './src/components/pages/ThongTinPage.vue'
-import HomePage from './src/components/pages/HomePage.vue'
+import ThongTinPage from '../pages/ThongTinPage.vue'
+import HomePage from '../pages/HomePage.vue'
 
 const routes = [
   {

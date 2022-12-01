@@ -166,22 +166,22 @@
 <script>
 import { defineComponent, ref, reactive, toRefs } from 'vue';
 import { useRouter } from 'vue-router';
-import ThongTin from '../Icon/MenuIcons/ToaNha/ThongTin.vue';
-import TaiKhoan from '../Icon/MenuIcons/ToaNha/TaiKhoan.vue';
-import HoSo from '../Icon/MenuIcons/ToaNha/HoSo.vue';
-import CuDan from '../Icon/MenuIcons/ToaNha/CuDan.vue';
-import CanHo from '../Icon/MenuIcons/ToaNha/CanHo.vue';
-import BaiXe from '../Icon/MenuIcons/Khac/BaiXe.vue';
-import BaoTri from '../Icon/MenuIcons/Khac/BaoTri.vue';
-import DienDan from '../Icon/MenuIcons/Khac/DienDan.vue';
-import QuanLyPhi from '../Icon/MenuIcons/Khac/QuanLyPhi.vue';
-import QuanTri from '../Icon/MenuIcons/Khac/QuanTri.vue';
-import ThongBao from '../Icon/MenuIcons/Khac/ThongBao.vue';
-import TienIch from '../Icon/MenuIcons/Khac/TienIch.vue';
-import YeuCau from '../Icon/MenuIcons/Khac/YeuCau.vue';
-import HoaDon from '../Icon/MenuIcons/Khac/QuanLyPhi/HoaDon.vue';
-import BienNhan from '../Icon/MenuIcons/Khac/QuanLyPhi/BienNhan.vue';
-import ViCanHo from '../Icon/MenuIcons/Khac/QuanLyPhi/ViCanHo.vue';
+import ThongTin from '../../assets/Icon/MenuIcons/ToaNha/ThongTin.vue';
+import TaiKhoan from '../../assets/Icon/MenuIcons/ToaNha/TaiKhoan.vue';
+import HoSo from '../../assets/Icon/MenuIcons/ToaNha/HoSo.vue';
+import CuDan from '../../assets/Icon/MenuIcons/ToaNha/CuDan.vue';
+import CanHo from '../../assets/Icon/MenuIcons/ToaNha/CanHo.vue';
+import BaiXe from '../../assets/Icon/MenuIcons/Khac/BaiXe.vue';
+import BaoTri from '../../assets/Icon/MenuIcons/Khac/BaoTri.vue';
+import DienDan from '../../assets/Icon/MenuIcons/Khac/DienDan.vue';
+import QuanLyPhi from '../../assets/Icon/MenuIcons/Khac/QuanLyPhi.vue';
+import QuanTri from '../../assets/Icon/MenuIcons/Khac/QuanTri.vue';
+import ThongBao from '../../assets/Icon/MenuIcons/Khac/ThongBao.vue';
+import TienIch from '../../assets/Icon/MenuIcons/Khac/TienIch.vue';
+import YeuCau from '../../assets/Icon/MenuIcons/Khac/YeuCau.vue';
+import HoaDon from '../../assets/Icon/MenuIcons/Khac/QuanLyPhi/HoaDon.vue';
+import BienNhan from '../../assets/Icon/MenuIcons/Khac/QuanLyPhi/BienNhan.vue';
+import ViCanHo from '../../assets/Icon/MenuIcons/Khac/QuanLyPhi/ViCanHo.vue';
 export default defineComponent({
     setup() {
       const router = useRouter()
