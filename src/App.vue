@@ -39,5 +39,6 @@ export default defineComponent({
   .ant-layout-content.layout-content {
     height: calc(100vh - 64px);
     background: #fff;
+    height: 100%;
   }
 </style>

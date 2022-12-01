@@ -270,7 +270,7 @@ export default defineComponent({
   }
   .info-user {
     background: #fafafa;
-    margin-left: 10px;
+    margin: 0 10px;
     padding: 10px 8px;
     border-radius: 8px;
     .avater-user {
@@ -308,12 +308,12 @@ export default defineComponent({
     margin: 0 10px;
     padding-right: 0;
     padding-left: 32px;
-    width: calc(100% - 5px);
+    width: calc(100% - 10px);
   }
   // Remove border-right of menu sider
   .ant-menu-inline {
     border-right: none;
-    width: calc(100% - 5px);
+    width: calc(100% - 10px);
     // :first-child {
     //   padding-top: 15px;
     // }
@@ -344,7 +344,7 @@ export default defineComponent({
 
   .ant-menu-inline .ant-menu-submenu-title {
     margin: 0 10px;
-    width: calc(100% - 5px);
+    width: calc(100% - 10px);
   }
   // CSS for item in sub menu
   .ant-menu-item.ant-menu-item-active.ant-menu-item-only-child {
@@ -377,7 +377,7 @@ export default defineComponent({
   .ant-menu-submenu.ant-menu-submenu-inline.ant-menu-submenu-open {
     background: #f5f5f5;
     border-radius: 8px;
-    width: calc(100% - 5px);
+    width: calc(100% - 10px);
     box-sizing: border-box;
     margin-left: 10px;
     .ant-menu-submenu-title {
