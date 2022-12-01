@@ -8,10 +8,10 @@
   </a-layout>
 </template>
 <script>
-import AdminSider from './components/layout/AdminSider.vue'
+import AdminSider from '@/components/layout/AdminSider.vue'
 import { defineComponent, ref } from 'vue';
-import AdminContent from './components/layout/AdminContent.vue';
-import AdminHeader from './components/layout/AdminHeader.vue';
+import AdminContent from '@/components/layout/AdminContent.vue';
+import AdminHeader from '@/components/layout/AdminHeader.vue';
 export default defineComponent({
   components: {
     AdminSider,

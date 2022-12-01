@@ -1,10 +1,10 @@
 <template>
   <a-layout class="admin-sider">
     <a-layout-sider class="layout-sider" width="250" :collapsed="collapsed" collapsible :trigger="null" @collapse="checkCollapse">
-      <img v-if="collapsed" class="mini-logo" src="../../assets/NLMiniLogo.svg"/>
-      <img v-else class="logo" src="../../assets/NLLogo.svg"/>
+      <img v-if="collapsed" class="mini-logo" src="@/assets/NLMiniLogo.svg"/>
+      <img v-else class="logo" src="@/assets/NLLogo.svg"/>
       <a-row class="info-user">
-        <a-col span="6"><img src="../../assets/avatar.svg" class="avatar-user" alt=""></a-col>
+        <a-col span="6"><img src="@/assets/avatar.svg" class="avatar-user" alt=""></a-col>
         <a-col span="1"/>
         <a-col span="15" v-show="collapsed == false">
           <a-row>
@@ -17,13 +17,12 @@
           </a-row>
         </a-col>
         <a-col span="2" align="center">
-         <img src="../../assets/ArrowRight.svg" alt="" @click="toggleCollapsed">
+         <img src="@/assets/ArrowRight.svg" alt="" @click="toggleCollapsed">
         </a-col>
       </a-row>
       <a-menu v-model:selectedKeys="selectedKeys" :open-keys="openKeys" mode="inline" @select="moveToPage" @open-change="onOpenChange">
         <a-menu-item disabled style="font-weight: bold;" class="menu-field">TÒA NHÀ</a-menu-item>
         <a-menu-item key="thong-tin">
-          <!-- <img class="logo-item" :src="itemKey === 'thong-tin' ? require('../../assets/ActiveIcon/ToaNha/ThongTinActive.svg') : require('../../assets/MenuIcon/ToaNha/ThongTin.svg')" alt=""> -->
           <thong-tin />
           <span class="nav-text">Thông tin</span>
         </a-menu-item>
@@ -166,22 +165,22 @@
 <script>
 import { defineComponent, ref, reactive, toRefs } from 'vue';
 import { useRouter } from 'vue-router';
-import ThongTin from '../../assets/Icon/MenuIcons/ToaNha/ThongTin.vue';
-import TaiKhoan from '../../assets/Icon/MenuIcons/ToaNha/TaiKhoan.vue';
-import HoSo from '../../assets/Icon/MenuIcons/ToaNha/HoSo.vue';
-import CuDan from '../../assets/Icon/MenuIcons/ToaNha/CuDan.vue';
-import CanHo from '../../assets/Icon/MenuIcons/ToaNha/CanHo.vue';
-import BaiXe from '../../assets/Icon/MenuIcons/Khac/BaiXe.vue';
-import BaoTri from '../../assets/Icon/MenuIcons/Khac/BaoTri.vue';
-import DienDan from '../../assets/Icon/MenuIcons/Khac/DienDan.vue';
-import QuanLyPhi from '../../assets/Icon/MenuIcons/Khac/QuanLyPhi.vue';
-import QuanTri from '../../assets/Icon/MenuIcons/Khac/QuanTri.vue';
-import ThongBao from '../../assets/Icon/MenuIcons/Khac/ThongBao.vue';
-import TienIch from '../../assets/Icon/MenuIcons/Khac/TienIch.vue';
-import YeuCau from '../../assets/Icon/MenuIcons/Khac/YeuCau.vue';
-import HoaDon from '../../assets/Icon/MenuIcons/Khac/QuanLyPhi/HoaDon.vue';
-import BienNhan from '../../assets/Icon/MenuIcons/Khac/QuanLyPhi/BienNhan.vue';
-import ViCanHo from '../../assets/Icon/MenuIcons/Khac/QuanLyPhi/ViCanHo.vue';
+import ThongTin from '@/assets/Icon/MenuIcons/ToaNha/ThongTin.vue';
+import TaiKhoan from '@/assets/Icon/MenuIcons/ToaNha/TaiKhoan.vue';
+import HoSo from '@/assets/Icon/MenuIcons/ToaNha/HoSo.vue';
+import CuDan from '@/assets/Icon/MenuIcons/ToaNha/CuDan.vue';
+import CanHo from '@/assets/Icon/MenuIcons/ToaNha/CanHo.vue';
+import BaiXe from '@/assets/Icon/MenuIcons/Khac/BaiXe.vue';
+import BaoTri from '@/assets/Icon/MenuIcons/Khac/BaoTri.vue';
+import DienDan from '@/assets/Icon/MenuIcons/Khac/DienDan.vue';
+import QuanLyPhi from '@/assets/Icon/MenuIcons/Khac/QuanLyPhi.vue';
+import QuanTri from '@/assets/Icon/MenuIcons/Khac/QuanTri.vue';
+import ThongBao from '@/assets/Icon/MenuIcons/Khac/ThongBao.vue';
+import TienIch from '@/assets/Icon/MenuIcons/Khac/TienIch.vue';
+import YeuCau from '@/assets/Icon/MenuIcons/Khac/YeuCau.vue';
+import HoaDon from '@/assets/Icon/MenuIcons/Khac/QuanLyPhi/HoaDon.vue';
+import BienNhan from '@/assets/Icon/MenuIcons/Khac/QuanLyPhi/BienNhan.vue';
+import ViCanHo from '@/assets/Icon/MenuIcons/Khac/QuanLyPhi/ViCanHo.vue';
 export default defineComponent({
     setup() {
       const router = useRouter()

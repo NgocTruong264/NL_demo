@@ -9,8 +9,8 @@
   </a-layout>
 </template>
 <script>
-import NotiIcon from '../../assets/Icon/HeaderIcons/NotiIcon.vue';
-import MessageIcon from '../../assets/Icon/HeaderIcons/MessageIcon.vue';
+import NotiIcon from '@/assets/Icon/HeaderIcons/NotiIcon.vue';
+import MessageIcon from '@/assets/Icon/HeaderIcons/MessageIcon.vue';
 export default {
   components: {NotiIcon, MessageIcon}
 }

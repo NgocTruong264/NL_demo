@@ -1,12 +1,12 @@
 <template>
   <a-row class="thongtin-page">
     <a-col span="24">
-      <img src=".././assets/TestImage.svg" alt="" class="image-page">
+      <img src="@/assets/TestImage.svg" alt="" class="image-page">
     </a-col>
     <a-col span="24">
       <div class="project-title">
         <span class="project-name">AKARI CITY</span>
-        <img src=".././assets/ArrowRight.svg" alt="">
+        <img src="@/assets/ArrowRight.svg" alt="">
       </div>
     </a-col>
     <a-col span="24">
@@ -38,7 +38,7 @@
         <a-col span="5">
           <div class="detail-title">Dự án</div>
           <div  class="detail-content">
-            <img src=".././assets/Test2Image.svg" alt="">
+            <img src="@/assets/Test2Image.svg" alt="">
           </div>
         </a-col>
         <a-col span="5">
@@ -78,10 +78,10 @@
 </template>
 <script>
 import { ref } from 'vue';
-import BlockIcon from '../assets/Icon/ThongTinPage/BlockIcon.vue';
-import LoaiCanHo from '../assets/Icon/ThongTinPage/LoaiCanHo.vue';
-import TangHam from '../assets/Icon/ThongTinPage/TangHam.vue';
-import TienIch from '../assets/Icon/ThongTinPage/TienIch.vue';
+import BlockIcon from '@/assets/Icon/ThongTinPage/BlockIcon.vue';
+import LoaiCanHo from '@/assets/Icon/ThongTinPage/LoaiCanHo.vue';
+import TangHam from '@/assets/Icon/ThongTinPage/TangHam.vue';
+import TienIch from '@/assets/Icon/ThongTinPage/TienIch.vue';
 export default {
   components: {BlockIcon, LoaiCanHo, TangHam, TienIch},
   setup() {
