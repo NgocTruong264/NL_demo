@@ -1,8 +1,9 @@
 import { createWebHistory, createRouter } from "vue-router";
-import ThongTinPage from '@/pages/ThongTinPage.vue'
-import HomePage from '@/pages/HomePage.vue'
-import QuanTriPage from '@/pages/QuanTriPage.vue'
-import LoginPage from '@/pages/LoginPage.vue'
+
+const HomePage = () => import('@/pages/HomePage.vue')
+const ThongTinPage = () => import('@/pages/ThongTinPage.vue')
+const QuanTriPage = () => import('@/pages/QuanTriPage.vue')
+const LoginPage = () => import('@/pages/LoginPage.vue')
 
 const routes = [
   {
