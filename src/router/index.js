@@ -1,4 +1,5 @@
 import { createWebHistory, createRouter } from "vue-router";
+import store from "@/store";
 
 // const HomePage = () => import('@/views/HomePage.vue')
 const ThongTinPage = () => import('@/views/ThongTinPage.vue')
@@ -13,6 +14,9 @@ const routes = [
     path: '/',
     name: 'Home',
     component: AppLayout,
+    meta: {
+      isAuth: true
+    },
     children: [
       {
         path: 'thong-tin',
@@ -33,7 +37,10 @@ const routes = [
     children: [
       {
         path: '',
-        component: LoginForm
+        component: LoginForm,
+        meta: {
+          isAuth: false
+        }
       }
     ]
   }
@@ -44,4 +51,23 @@ const router = createRouter({
   routes
 })
 
+router.beforeEach((to, from, next) => {
+ const isLoggedIn = store.state.user.isAuthenticated
+ const isPublic = to.matched.some((record) => record.meta.isAuth)
+
+ if (!isLoggedIn && isPublic) {
+  return next({
+    path: '/login',
+    query: { redirect: to.fullPath }
+  })
+ }
+ if (isLoggedIn && !isPublic) {
+  return next({
+    path: '/',
+    query: { redirect: to.fullPath }
+  })
+ }
+
+ next()
+})
 export default router

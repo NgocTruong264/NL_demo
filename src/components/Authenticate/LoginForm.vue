@@ -20,6 +20,7 @@
 import { computed } from '@vue/reactivity';
 import { reactive } from 'vue';
 import { useStore } from 'vuex';
+import { useRouter } from 'vue-router';
 
 const rules = reactive({
   userName: [{ required: true, message: 'Tên đăng nhập không được để trống!' }],
@@ -32,6 +33,7 @@ const formModel = reactive({
   remember: true
 })
 const store = useStore()
+const router = useRouter()
 const onFinish = values => {
   console.log('Success', values)
   const userData = {
@@ -41,6 +43,7 @@ const onFinish = values => {
     email: 'nhat@gm.com'
   }
   store.dispatch('user/setUser', userData)
+  router.replace({ path: '/' })
 }
 const onFinishFailed = error => {
   console.log('Failed' ,error)
