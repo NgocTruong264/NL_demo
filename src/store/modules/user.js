@@ -2,7 +2,8 @@ const user = {
   namespaced: true,
   state: () => ({
     isAuthenticated: false,
-    userData: {}
+    userData: {},
+    token: ''
   }),
   getters: {
     getUserData(state) {
@@ -20,6 +21,10 @@ const user = {
       } else {
         commit('SET_AUTH', false)
       }
+    },
+    setToken({ commit }, token) {
+      localStorage.setItem('token', token)
+      commit('SET_TOKEN', token)
     }
   },
   mutations: {
@@ -28,6 +33,9 @@ const user = {
     },
     SET_AUTH(state, flag) {
       state.isAuthenticated = flag
+    },
+    SET_TOKEN(state, token) {
+      state.token = token
     }
   }
 }

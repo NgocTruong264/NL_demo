@@ -1,5 +1,5 @@
 import { createWebHistory, createRouter } from "vue-router";
-import store from "@/store";
+// import store from "@/store";
 
 // const HomePage = () => import('@/views/HomePage.vue')
 const ThongTinPage = () => import('@/views/ThongTinPage.vue')
@@ -8,6 +8,7 @@ const LoginForm = () => import('@/components/Authenticate/LoginForm.vue')
 const LoginPage = () => import('@/views/LoginPage.vue')
 // const App = () => import('@/App.vue')
 const AppLayout = () => import('@/views/AppLayout.vue')
+const ChiTietTKPage = () => import('@/views/ChiTietTKPage.vue')
 
 const routes = [
   {
@@ -27,6 +28,10 @@ const routes = [
         path: 'quan-tri',
         name: 'QuanTri',
         component: QuanTriPage
+      },
+      {
+        path: 'quan-tri/:id',
+        component: ChiTietTKPage
       }
     ]
   },
@@ -51,23 +56,23 @@ const router = createRouter({
   routes
 })
 
-router.beforeEach((to, from, next) => {
- const isLoggedIn = store.state.user.isAuthenticated
- const isPublic = to.matched.some((record) => record.meta.isAuth)
+// router.beforeEach((to, from, next) => {
+//  const isLoggedIn = store.state.user.isAuthenticated
+//  const isPublic = to.matched.some((record) => record.meta.isAuth)
 
- if (!isLoggedIn && isPublic) {
-  return next({
-    path: '/login',
-    query: { redirect: to.fullPath }
-  })
- }
- if (isLoggedIn && !isPublic) {
-  return next({
-    path: '/',
-    query: { redirect: to.fullPath }
-  })
- }
+//  if (!isLoggedIn && isPublic) {
+//   return next({
+//     path: '/login',
+//     query: { redirect: to.fullPath }
+//   })
+//  }
+//  if (isLoggedIn && !isPublic) {
+//   return next({
+//     path: '/',
+//     query: { redirect: to.fullPath }
+//   })
+//  }
 
- next()
-})
+//  next()
+// })
 export default router
