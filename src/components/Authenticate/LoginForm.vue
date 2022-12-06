@@ -30,12 +30,10 @@ import { computed } from '@vue/reactivity';
 import { reactive, defineComponent } from 'vue';
 import { useStore } from 'vuex';
 import { useRouter } from 'vue-router';
-import { inject } from 'vue';
 import NamLongLogo from '@/assets/Icon/LoginIcons/NamLongLogo.vue';
 
 defineComponent({ NamLongLogo })
 
-const axios = inject('axios')
 
 const rules = reactive({
   userName: [{ required: true, message: 'Số điện thoại không được để trống!' }],
@@ -49,19 +47,15 @@ const formModel = reactive({
 const store = useStore()
 const router = useRouter()
 const onFinish = async values => {
-  console.log('Success', values)
-  const userData = {
-    name: 'Nhat',
-    phone: '0123123123',
-    gender: 1,
-    email: 'nhat@gm.com'
-  }
-  const token = 'ashdjbhibhfqbhubchabsgvcgvcqiyvcx'
-  store.dispatch('user/setUser', userData)
-  store.dispatch('user/setToken', token)
-  const response = await axios.get('/user')
-  console.log(response)
-  router.replace({ path: '/' })
+  // const userData = {
+  //   name: 'Nhat',
+  //   phone: '0123123123',
+  //   gender: 1,
+  //   email: 'nhat@gm.com'
+  // }
+  await store.dispatch('auth/login', { phone: values.userName, password: values.password })
+  router.replace('/')
+  // const token = 'ashdjbhibhfqbhubchabsgvcgvcqiyvcx'
 }
 const onFinishFailed = error => {
   console.log('Failed' ,error)

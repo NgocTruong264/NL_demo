@@ -241,7 +241,6 @@ export default defineComponent({
   background: #fff;
   flex: none;
   // width: 100%;
-  position: 'fixed' !important;
   .admin-sider {
     overflow: 'auto';
     height: '100vh';

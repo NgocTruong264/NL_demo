@@ -12,3 +12,8 @@ export default defineComponent({
   },
 });
 </script>
+<style lang="scss">
+// .layout-content.ant-layout-content {
+//   margin-left: calc(100% - );
+// }
+</style>
