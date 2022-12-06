@@ -2,18 +2,19 @@
   <a-row class="quantri-page-container">
     <a-col :span="22" :offset="1">
       <a-row>
-        <a-col :span="16" class="header-title-container">
+        <a-col :span="14" class="header-title-container">
           <p class="header-title">
-            Tài khoản
+            Tài khoản ban QLTN
           </p>
         </a-col>
-        <a-col :span="8" class="search-field">
+        <a-col :span="10" class="search-field">
           <input
             v-model="keyword"
             placeholder="Họ tên hoặc ID..."
             class="input-field"
             @input="handleSearch(keyword)"
           >
+          <search-outlined class="search-icon"/>
         </a-col>
       </a-row>
       <a-row>
@@ -37,11 +38,14 @@
                   <span class="user-fullName">{{ record.name }}</span>
                 </span>
               </template>
+              <template v-else-if="column.key === 'phone'">
+                <span class="user-phone">{{ record.phone }}</span>
+              </template>
               <template v-else-if="column.key === 'status'">
                 <span :class="record.status ? 'user-online' : 'user-offline'">{{ record.status ? 'Đang hoạt động' : 'Không hoạt động' }}</span>
               </template>
               <template v-else-if="column.key === 'action'">
-                <span>Thêm</span>
+                <img src="@/assets/IconMenuTooltip.svg" alt="" class="menu-tooltip">
               </template>
             </template>
           </a-table>
@@ -53,8 +57,10 @@
 <script>
 import { ref } from 'vue'
 import AddIcon from '@/assets/Icon/QuanTriPageIcons/AddIcon.vue'
+import { SearchOutlined } from '@ant-design/icons-vue';
+
 export default {
-  components: { AddIcon },
+  components: { AddIcon, SearchOutlined },
   setup() {
     const columns = ref([
       {
@@ -69,7 +75,7 @@ export default {
         key: 'phone',
       },
       {
-        title: 'Vị trí',
+        title: 'Chức vụ',
         dataIndex: 'role',
         key: 'role',
       },
@@ -156,7 +162,7 @@ export default {
     margin-top: 0;
   }
   .ant-table table {
-    font-size: 12px;
+    font-size: 14px;
   }
   .ant-table-tbody > tr:hover:not(.ant-table-expanded-row):not(.ant-table-row-selected) > td {
     background-color: #f0f0f0;
@@ -165,6 +171,10 @@ export default {
     padding-left: 5px;
     cursor: pointer;
     font-weight: 500;
+    color: #0080F6
+  }
+  .user-phone {
+    font-weight: bold;
   }
   .avatar-user {
     max-width: 25px;
@@ -203,6 +213,15 @@ export default {
     font-weight: 400;
     color: #262626;
   }
+  .ant-table-container table > thead > tr:first-child th:first-child {
+    padding-left: 45px;
+  }
+  .ant-table-container table > tbody > tr td:last-child {
+    padding-left: 25px;
+  }
+  .menu-tooltip.ant-table-cell {
+    left: 0.5%
+  }
 }
 .quantri-page-container {
   .body-container {
@@ -219,7 +238,7 @@ export default {
     justify-content: flex-start;
     .header-title {
       font-size: 32px;
-      color: #EF4129;
+      color: #910D10;
       font-weight: 700;
       margin: 0;
     }
@@ -234,7 +253,7 @@ export default {
   }
 
   .search-field {
-    padding-bottom: 20px;
+    padding: 10px;
     display: flex;
     align-items: center;
     position: relative;
@@ -253,6 +272,7 @@ export default {
       right: 5%;
       z-index: 10;
       position: absolute;
+      color: #262626
     }
   }
 }

@@ -4,6 +4,12 @@ import { createWebHistory, createRouter } from "vue-router";
 // const HomePage = () => import('@/views/HomePage.vue')
 const ThongTinPage = () => import('@/views/ThongTinPage.vue')
 const QuanTriPage = () => import('@/views/QuanTriPage.vue')
+const CanHoPage = () => import('@/views/CanHoPage.vue')
+const HoSoPage = () => import('@/views/HoSoPage.vue')
+const CuDanPage = () => import('@/views/CuDanPage.vue')
+const HoaDonPage = () => import('@/views/HoaDonPage.vue')
+const ThemCuDanPage = () => import('@/views/ThemCuDanPage.vue')
+
 const LoginForm = () => import('@/components/Authenticate/LoginForm.vue')
 const LoginPage = () => import('@/views/LoginPage.vue')
 // const App = () => import('@/App.vue')
@@ -32,6 +38,31 @@ const routes = [
       {
         path: 'quan-tri/:id',
         component: ChiTietTKPage
+      },
+      {
+        path: 'can-ho',
+        name: 'CanHo',
+        component: CanHoPage
+      },
+      {
+        path: 'ho-so',
+        name: 'HoSo',
+        component: HoSoPage
+      },
+      {
+        path: 'cu-dan',
+        name: 'CuDan',
+        component: CuDanPage,
+      },
+      {
+        path: 'cu-dan/them-cu-dan',
+        name: 'ThemCuDan',
+        component: ThemCuDanPage
+      },
+      {
+        path: 'hoa-don',
+        name: 'HoaDon',
+        component: HoaDonPage
       }
     ]
   },

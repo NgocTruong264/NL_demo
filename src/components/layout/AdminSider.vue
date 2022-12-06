@@ -7,14 +7,7 @@
         <a-col span="6"><img src="@/assets/avatar.svg" class="avatar-user" alt=""></a-col>
         <a-col span="1"/>
         <a-col span="15" v-show="collapsed == false">
-          <a-row>
-            <a-col span="24">
-              Truong Nguyen Ngoc
-            </a-col>
-            <a-col span="24">
-              Email
-            </a-col>
-          </a-row>
+          Hi, Ngoc!
         </a-col>
         <a-col span="2" align="center">
          <img src="@/assets/ArrowRight.svg" alt="" @click="toggleCollapsed">

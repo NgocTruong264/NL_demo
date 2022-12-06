@@ -6,74 +6,37 @@
     <a-col span="24">
       <div class="project-title">
         <span class="project-name">AKARI CITY</span>
-        <img src="@/assets/ArrowRight.svg" alt="">
+        <img src="@/assets/IconMenuTooltip.svg" alt="">
       </div>
     </a-col>
     <a-col span="24">
       <a-row class="project-overview">
-        <a-col span="5" class="info block" @click="setKey('block')">
+        <a-col span="5" :class="key == 'block' ? 'active info block' : 'info block'" @click="setKey('block')">
           <block-icon class="info-icon"/>
           <div class="info-title">Block</div>
           <div class="info-number">4</div>
         </a-col>
-        <a-col span="5" class="info type" @click="setKey('type')">
+        <a-col span="5" :class="key == 'type' ? 'active type info' : 'type info'" @click="setKey('type')">
           <loai-can-ho class="info-icon"/>
           <div class="info-title">Loại căn hộ</div>
           <div class="info-number">7</div>
         </a-col>
-        <a-col span="5" class="info tienich" @click="setKey('tienich')">
+        <a-col span="5" :class="key == 'tienich' ? 'active tienich info' : 'tienich info'" @click="setKey('tienich')">
           <tien-ich class="info-icon"/>
           <div class="info-title">Tiện ích</div>
           <div class="info-number">4</div>
         </a-col>
-        <a-col span="5" class="info tangham" @click="setKey('tangham')">
+        <a-col span="5" :class="key == 'tangham' ? 'active tangham info' : 'tangham info'" @click="setKey('tangham')">
           <tang-ham class="info-icon"/>
           <div class="info-title">Tầng hầm</div>
           <div class="info-number">9</div>
         </a-col>
       </a-row>
     </a-col>
-    <div class="project-detail">
-      <a-row class="detail-field">
-        <a-col span="5">
-          <div class="detail-title">Dự án</div>
-          <div  class="detail-content">
-            <img src="@/assets/Test2Image.svg" alt="">
-          </div>
-        </a-col>
-        <a-col span="5">
-          <div class="detail-title">Vị trí</div>
-          <div class="detail-content">73 – 77 Võ Văn Kiệt, phường An Lạc, Quận Bình Tân, Thành phố Hồ Chí Minh</div>
-        </a-col>
-        <a-col span="5">
-          <div class="detail-title">Chủ đầu tư</div>
-          <div class="detail-content">Nam Long Group – Hankyu Hanshin Properties Corp – Nishi Nippon Railroad</div>
-        </a-col>
-        <a-col span="5">
-          <div class="detail-title">Tổng diện tích</div>
-          <div class="detail-content">8,5 hecta</div>
-        </a-col>
-      </a-row>
-      <a-row class="more-info">
-        <a-col span="18">
-          <div class="detail-title">Mô tả</div>
-          <div>
-            Tọa lạc tại vị trí thuận tiện bậc nhất khu đô thị Akari City, 
-            căn hộ giai đoạn 2 mở ra một không gian sống tiện nghi vượt trội cho chủ nhân tương lai. 
-            Một phong cách sống Nhật Bản hiện đại đương đại giao hòa với sự tinh tế, 
-            thư thái của cuộc sống riêng tư biệt lập.
-          </div>
-        </a-col>
-        <a-col span="1" />
-        <a-col span="5">
-          <div class="detail-title">Liên hệ</div>
-          <div>
-            Điện thoại: (84.28) 54 16 17 18
-            HOTLINE: 098 139 33 44
-          </div>
-        </a-col>
-      </a-row>
-    </div>
+    <a-col span="24">
+      <TableLoaiCanHo v-if="key === 'type'"/>
+      <ProjectDetail v-else/>
+    </a-col>
   </a-row>
 </template>
 <script>
@@ -82,13 +45,15 @@ import BlockIcon from '@/assets/Icon/ThongTinPage/BlockIcon.vue';
 import LoaiCanHo from '@/assets/Icon/ThongTinPage/LoaiCanHo.vue';
 import TangHam from '@/assets/Icon/ThongTinPage/TangHam.vue';
 import TienIch from '@/assets/Icon/ThongTinPage/TienIch.vue';
+
+import ProjectDetail from '@/components/ThongTinPage/ProjectDetail.vue'
+import TableLoaiCanHo from '@/components/ThongTinPage/TableLoaiCanHo.vue';
 export default {
-  components: {BlockIcon, LoaiCanHo, TangHam, TienIch},
+  components: { BlockIcon, LoaiCanHo, TangHam, TienIch, ProjectDetail, TableLoaiCanHo },
   setup() {
     const key = ref('')
     const setKey = (value) => {
       key.value = value
-      console.log(key.value)
     }
     return {
       setKey,
@@ -129,6 +94,9 @@ export default {
           font-size: 24px;
         }
       }
+      .active {
+        border-bottom: 3px solid currentColor;
+      }
       .info.block {
         background: #FFF2C5;
       }
@@ -142,30 +110,11 @@ export default {
         background: #FFF6F6;
       }
     }
-    .project-detail {
-      text-align: left;
-      margin: 32px 16px;
-      padding: 32px 0;
-      background: #FFF;
-      border-radius: 8px;
-      .detail-field {
-        display: flex;
-        justify-content: space-between;
-        padding: 0 16px;
-        .detail-content {
-          background: #F5F5F5;
-          height: 75%;
-          padding: 16px;
-          border-radius: 8px;
-        }
-      }
-      .more-info {
-        padding: 16px;
-      }
-      .detail-title {
-        padding-bottom: 8px;
-        font-weight: bold;
-      }
-    }
+    // .detail-container {
+    //   text-align: left;
+    //   margin: 32px 16px;
+    //   background: #FFF;
+    //   border-radius: 8px;
+    // }
   }
 </style>
