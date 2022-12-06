@@ -1,11 +1,17 @@
 <template>
-  <a-row class="quantri-page-container">
+  <a-row class="cudan-page-container">
     <a-col :span="22" :offset="1">
-      <a-row>
-        <a-col :span="14" class="header-title-container">
+      <a-row class="header-cudan-page">
+        <a-col :span="12" class="header-title-container">
           <p class="header-title">
-            Tài khoản ban QLTN
+            Tài khoản cư dân
           </p>
+        </a-col>
+        <a-col span="3" offset="1" class="add-btn">
+          <a-button @click="router.push('/cu-dan/them-cu-dan')">
+            <template #icon><add-icon /></template>
+            <span>Tạo mới</span>
+          </a-button>
         </a-col>
         <a-col :span="10" class="search-field">
           <input
@@ -22,14 +28,11 @@
           <a-table
             :columns="columns"
             :data-source="dataSource"
-            class="table-listtk"
+            class="table-list-cudan"
             :row-key="(record) => record.id"
           >
             <template #headerCell="{ column }">
               <span style="font-weight: bold; text-align: center;">{{ column.title }}</span>
-              <template v-if="column.key === 'action'">
-                <AddIcon />
-              </template>
             </template>
             <template #bodyCell="{column, record}">
               <template v-if="column.key === 'name'">
@@ -42,7 +45,9 @@
                 <span class="user-phone">{{ record.phone }}</span>
               </template>
               <template v-else-if="column.key === 'status'">
-                <span :class="record.status ? 'user-online' : 'user-offline'">{{ record.status ? 'Đang hoạt động' : 'Không hoạt động' }}</span>
+                <span>
+                  <a-badge :color="setColor(record)"/>  
+                </span>
               </template>
               <template v-else-if="column.key === 'action'">
                 <img src="@/assets/Icon/FunctionIcons/IconMenuTooltip.svg" alt="" class="menu-tooltip">
@@ -56,15 +61,24 @@
 </template>
 <script>
 import { ref } from 'vue'
-import AddIcon from '@/assets/Icon/QuanTriPageIcons/AddIcon.vue'
+import { useRouter } from 'vue-router';
 import { SearchOutlined } from '@ant-design/icons-vue';
+import AddIcon from '@/assets/Icon/QuanTriPageIcons/AddIcon.vue';
 
 export default {
-  components: { AddIcon, SearchOutlined },
+  components: { SearchOutlined, AddIcon },
   setup() {
+    const router = useRouter()
+    const setColor = ((record) => {return record.status ? 'green' : 'gray'})
     const columns = ref([
       {
-        title: 'Nhân viên',
+        title: 'Căn hộ',
+        name: 'canho',
+        dataIndex: 'apartment',
+        key: 'apartment'
+      },
+      {
+        title: 'Cư dân',
         name: 'nv',
         dataIndex: 'name',
         key: 'name',
@@ -75,14 +89,19 @@ export default {
         key: 'phone',
       },
       {
-        title: 'Chức vụ',
-        dataIndex: 'role',
-        key: 'role',
+        title: 'CCCD/ CMND',
+        dataIndex: 'idCard',
+        key: 'idCard',
       },
       {
-        title: 'Trạng thái',
+        title: 'Địa chỉ email',
+        dataIndex: 'email',
+        key: 'email',
+      },
+      {
         key: 'status',
         dataIndex: 'status',
+        align: 'center'
       },
       {
         // title: '+',
@@ -92,62 +111,76 @@ export default {
     const dataSource = ref([
       {
         id: 0,
+        apartment: 'B3A01',
         avatar: 'https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes-thumbnail.png',
         name: 'Giang Minh Nhật',
         phone: '0123123123',
-        role: 'Giám đốc',
+        idCard: '0900900900',
+        email: 'test@gmail.com',
         status: true
       },
       {
         id: 1,
+        apartment: 'B3A01',
         avatar: 'https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes-thumbnail.png',
         name: 'Giang Minh Nhật',
         phone: '0123123123',
-        role: 'Giám đốc',
+        idCard: '0900900900',
+        email: 'test@gmail.com',
         status: true
       },
       {
         id: 2,
+        apartment: 'B3A01',
         avatar: 'https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes-thumbnail.png',
         name: 'Giang Minh Nhật',
         phone: '0123123123',
-        role: 'Giám đốc',
+        idCard: '0900900900',
+        email: 'test@gmail.com',
         status: true
       },
       {
         id: 3,
+        apartment: 'B3A01',
         avatar: 'https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes-thumbnail.png',
         name: 'Giang Minh Nhật',
         phone: '0123123123',
-        role: 'Giám đốc',
+        idCard: '0900900900',
+        email: 'test@gmail.com',
         status: true
       },
       {
         id: 4,
+        apartment: 'B3A01',
         avatar: 'https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes-thumbnail.png',
         name: 'Giang Minh Nhật',
         phone: '0123123123',
-        role: 'Giám đốc',
+        idCard: '0900900900',
+        email: 'test@gmail.com',
         status: false
       },
       {
         id: 5,
+        apartment: 'B3A01',
         avatar: 'https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes-thumbnail.png',
         name: 'Giang Minh Nhật',
         phone: '0123123123',
-        role: 'Giám đốc',
+        idCard: '0900900900',
+        email: 'test@gmail.com',
         status: true
       }
     ])
     return {
       columns,
-      dataSource
+      dataSource,
+      setColor,
+      router
     }
   }
 }
 </script>
 <style lang="scss">
-.table-listtk.ant-table-wrapper {
+.table-list-cudan.ant-table-wrapper {
   .ant-table-thead > tr > th .ant-table-filter-icon {
     right: auto;
     background: none;
@@ -162,7 +195,7 @@ export default {
     margin-top: 0;
   }
   .ant-table table {
-    font-size: 14px;
+    font-size: 12px;
   }
   .ant-table-tbody > tr:hover:not(.ant-table-expanded-row):not(.ant-table-row-selected) > td {
     background-color: #f0f0f0;
@@ -213,7 +246,7 @@ export default {
     font-weight: 400;
     color: #262626;
   }
-  .ant-table-container table > thead > tr:first-child th:first-child {
+  .ant-table-container table > thead > tr:first-child th:nth-child(2) {
     padding-left: 45px;
   }
   .ant-table-container table > tbody > tr td:last-child {
@@ -222,8 +255,19 @@ export default {
   .menu-tooltip.ant-table-cell {
     left: 0.5%
   }
+  .ant-table-thead > tr > th:not(:last-child):not(.ant-table-selection-column):not(.ant-table-row-expand-icon-cell):not([colspan])::before {
+    display: none;
+  }
+  .ant-badge-status-green, .ant-badge-status-dot {
+    width: 10px;
+    height: 10px;
+  }
 }
-.quantri-page-container {
+.cudan-page-container {
+  .ant-row.header-cudan-page {
+    display: flex;
+    justify-content: space-between;
+  }
   .body-container {
     padding-top: 20px;
     .user-online {
@@ -251,7 +295,16 @@ export default {
       margin-bottom: 20px
     }
   }
-
+  .ant-btn {
+    background: #910D10;
+    color: white;
+    height: 100%;
+    border-radius: 8px;
+    width: 100%;
+  }
+  // svg {
+  //   color: white !important
+  // }
   .search-field {
     padding: 10px;
     display: flex;

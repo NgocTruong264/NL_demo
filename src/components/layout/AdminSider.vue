@@ -10,7 +10,7 @@
           Hi, Ngoc!
         </a-col>
         <a-col span="2" align="center">
-         <img src="@/assets/ArrowRight.svg" alt="" @click="toggleCollapsed">
+         <img src="@/assets/Icon/FunctionIcons/ArrowRight.svg" alt="" @click="toggleCollapsed">
         </a-col>
       </a-row>
       <a-menu v-model:selectedKeys="selectedKeys" :open-keys="openKeys" mode="inline" @select="moveToPage" @open-change="onOpenChange">
@@ -234,10 +234,10 @@ export default defineComponent({
 });
 </script>
 <style lang="scss">
+.ant-layout.admin-sider {
   svg {
     color: #ababab
   }
-.ant-layout.admin-sider {
   background: #fff;
   flex: none;
   // width: 100%;
