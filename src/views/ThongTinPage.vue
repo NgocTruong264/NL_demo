@@ -6,7 +6,7 @@
     <a-col span="24">
       <div class="project-title">
         <span class="project-name">AKARI CITY</span>
-        <img src="@/assets/IconMenuTooltip.svg" alt="">
+        <img src="@/assets/Icon/FunctionIcons/IconMenuTooltip.svg" alt="">
       </div>
     </a-col>
     <a-col span="24">
