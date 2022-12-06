@@ -64,7 +64,7 @@
         <a-row>
           <a-col>Email</a-col>
           <a-col span="24">
-            <a-form-item has-feedback name="email">
+            <a-form-item name="email">
               <a-input class="input-field" v-model:value="formState.email"/>
             </a-form-item>
           </a-col>
@@ -77,9 +77,9 @@
             <a-form-item has-feedback name="avatar">
               <a-upload
                 v-model:file-list="formState.avatar"
-                action="/Hello/Hi"
+                action="http://192.168.2.23:2001/file/upload"
                 accept="image/*"
-                @change="handleChange"
+                @change="handleChangeAvatar"
                 :show-upload-list="false"
               >
                 <a-button class="upload-btn">
@@ -195,14 +195,14 @@
       </a-col>
       <a-col span="24">
         <a-row>
-          <a-col span="24">Ảnh cư dân</a-col>
+          <a-col span="24">Ảnh chụp hai mặt</a-col>
           <a-col span="11">
-            <a-form-item has-feedback name="avatar">
+            <a-form-item has-feedback name="front">
               <a-upload
-                v-model:file-list="formState.avatar"
-                action="/Hello/Hi"
+                v-model:file-list="formState.front"
+                action="http://192.168.2.23:1001/file/upload"
                 accept="image/*"
-                @change="handleChange"
+                @change="handleChangeFront"
                 :show-upload-list="false"
               >
                 <a-button class="upload-btn">
@@ -213,12 +213,12 @@
             </a-form-item>
           </a-col>
           <a-col span="11" offset="1">
-            <a-form-item has-feedback name="avatar">
+            <a-form-item has-feedback name="back">
               <a-upload
-                v-model:file-list="formState.avatar"
-                action="/Hello/Hi"
+                v-model:file-list="formState.back"
+                action="http://192.168.2.23:1001/file/upload"
                 accept="image/*"
-                @change="handleChange"
+                @change="handleChangeBack"
                 :show-upload-list="false"
               >
                 <a-button class="upload-btn">
@@ -238,7 +238,7 @@
           <a-col span="24">Loại hợp đồng</a-col>
           <a-col span="11">
             <a-form-item>
-              <a-radio-group v-model:value="formState.typeIdCard">
+              <a-radio-group v-model:value="formState.typeContract">
                 <a-radio value="1">Mua bán</a-radio>
                 <a-radio value="2">Cho thuê</a-radio>
               </a-radio-group>
@@ -250,13 +250,12 @@
         <a-row>
           <a-col>Ảnh chụp hợp đồng</a-col>
           <a-col span="24">
-            <a-form-item has-feedback name="avatar">
+            <a-form-item has-feedback name="contract">
               <a-upload
-                v-model:file-list="formState.avatar"
-                action="/Hello/Hi"
+                v-model:file-list="formState.contract"
+                action="http://192.168.2.23:1001/file/upload"
                 accept="image/*"
-                @change="handleChange"
-                :show-upload-list="false"
+                @change="handleChangeContract"
               >
                 <a-button class="upload-btn">
                   <img src="@/assets/Icon/FunctionIcons/AddWhiteIcon.svg">
@@ -274,7 +273,7 @@
           <img src="@/assets/Icon/FunctionIcons/AddUserIcon.svg" alt="">
           Submit
         </a-button>
-        <a-button class="cancel-btn" @click="resetForm">X Cancel</a-button>
+        <a-button class="cancel-btn" @click="resetFields">X Cancel</a-button>
       </div>
     </a-form-item>
   </a-form>
@@ -282,6 +281,7 @@
 <script>
 // import { LockOutlined } from '@ant-design/icons-vue';
 import { message } from 'ant-design-vue';
+import { useForm } from 'ant-design-vue/lib/form';
 import { ref, reactive } from 'vue'; 
 import { useRouter } from 'vue-router'
 export default {
@@ -303,7 +303,11 @@ export default {
             typeIdCard: null,
             dateIssue: null,
             placeIssue: null,
-            avatar: null
+            avatar: null,
+            front: null,
+            back: null,
+            contract: null,
+            typeContract: null
         })
         const rules = {
             name: [{ required: true, trigger: "change", message: "Tên không được bỏ trống!" }],
@@ -320,13 +324,48 @@ export default {
         const handleFinish = () => {
             console.log(formState)
         }
+        const { resetFields } = useForm(formRef, formState)
         const dateFormat = 'DD/MM/YYYY'
-        const handleChange = info => {
+        const handleChangeAvatar = info => {
           if (info.file.status !== 'uploading') {
             console.log(info.file, info.fileList)
           }
           if (info.file.status === 'done') {
             message.success(`${info.file.name} file uploaded successfully`)
+            info.file = formState.avatar
+          } else if (info.file.status === 'error') {
+            message.error(`${info.file.name} file upload failed.`)
+          }
+        }
+        const handleChangeFront = info => {
+          if (info.file.status !== 'uploading') {
+            console.log(info.file, info.fileList)
+          }
+          if (info.file.status === 'done') {
+            message.success(`${info.file.name} file uploaded successfully`)
+            info.file = formState.front
+          } else if (info.file.status === 'error') {
+            message.error(`${info.file.name} file upload failed.`)
+          }
+        }
+        const handleChangeBack = info => {
+          if (info.file.status !== 'uploading') {
+            console.log(info.file, info.fileList)
+          }
+          if (info.file.status === 'done') {
+            message.success(`${info.file.name} file uploaded successfully`)
+            info.file = formState.back
+          } else if (info.file.status === 'error') {
+            message.error(`${info.file.name} file upload failed.`)
+          }
+        }
+        const handleChangeContract = info => {
+          if (info.file.status !== 'uploading') {
+            console.log(info.fileList)
+          }
+          if (info.file.status === 'done') {
+            message.success(`${info.file.name} file uploaded successfully`)
+            info.fileList = formState.contract
           } else if (info.file.status === 'error') {
             message.error(`${info.file.name} file upload failed.`)
           }
@@ -336,9 +375,13 @@ export default {
             formState,
             rules,
             handleFinish,
+            resetFields,
             router,
             dateFormat,
-            handleChange
+            handleChangeAvatar,
+            handleChangeFront,
+            handleChangeBack,
+            handleChangeContract
         };
     },
     // components: { LockOutlined }
@@ -433,6 +476,9 @@ export default {
           font-weight: normal;
         }
       }
+    }
+    .ant-form-item {
+      margin-bottom: 10px;
     }
   }
 </style>
